@@ -32,19 +32,16 @@ def load_texture():
         img = arr.tobytes()
         w, h = arr.shape[1], arr.shape[0]
 
-    # Define parâmetros de textura
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
     glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE)
 
-    # Cria textura base e gera mipmaps automaticamente
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_RGB, GL_UNSIGNED_BYTE, img)
     glGenerateMipmap(GL_TEXTURE_2D)
 
     set_filters()
 
 def set_filters():
-    """Alterna filtros para ver diferença no mipmapping"""
     min_f = GL_LINEAR_MIPMAP_LINEAR if use_linear else GL_NEAREST_MIPMAP_NEAREST
     mag_f = GL_LINEAR if use_linear else GL_NEAREST
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, min_f)
@@ -61,7 +58,6 @@ def init():
     gluPerspective(60, 800/600, 0.1, 100)
     glMatrixMode(GL_MODELVIEW)
 
-    # Luz simples
     glEnable(GL_LIGHTING)
     glEnable(GL_LIGHT0)
     glLightfv(GL_LIGHT0, GL_POSITION, (2,3,4,1))
@@ -69,12 +65,11 @@ def init():
     glMaterialfv(GL_FRONT, GL_SPECULAR, (0.6,0.6,0.6,1))
     glMaterialf(GL_FRONT, GL_SHININESS, 32)
 
-    # Habilita texturas
     glEnable(GL_TEXTURE_2D)
     load_texture()
 
 def textured_cube(s=1.5):
-    """Cubo com coordenadas de textura"""
+    """Cubo com textura"""
     glBegin(GL_QUADS)
     # frente
     glNormal3f(0,0,1)

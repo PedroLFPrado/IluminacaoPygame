@@ -16,7 +16,7 @@ def init():
     glMatrixMode(GL_MODELVIEW)
 
 def torus(R=1.2, r=0.4, ns=48, nt=24):
-    # torus para ver faces internas/externas
+    
     for i in range(ns):
         glBegin(GL_QUAD_STRIP)
         for j in range(nt+1):
@@ -37,11 +37,11 @@ def main():
     global angle, culling
     pygame.init()
     pygame.display.set_mode((800,600), DOUBLEBUF|OPENGL)
-    pygame.display.set_caption("Back-Face Culling (toggle: C)")
+    pygame.display.set_caption("Back-Face Culling")
     init()
     clock = pygame.time.Clock()
 
-    # iluminação leve pra ajudar a perceber o “dentro/fora”
+   
     glEnable(GL_LIGHTING); glEnable(GL_LIGHT0)
     glLightfv(GL_LIGHT0, GL_POSITION, (3,4,5,1))
     glLightfv(GL_LIGHT0, GL_DIFFUSE,  (1,1,1,1))

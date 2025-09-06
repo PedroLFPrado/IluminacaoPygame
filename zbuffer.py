@@ -8,7 +8,7 @@ angle = 0
 def init():
     glEnable(GL_DEPTH_TEST)              # Z-buffer ligado (Hidden-Surface Removal)
     glClearColor(0.1, 0.1, 0.12, 1.0)
-    glEnable(GL_CULL_FACE)               # (opcional) já liga culling pra ficar mais rápido
+    glEnable(GL_CULL_FACE)              
     glCullFace(GL_BACK)
 
     glMatrixMode(GL_PROJECTION)
@@ -59,7 +59,7 @@ def main():
         glLoadIdentity()
         gluLookAt(0,2,7, 0,0,0, 0,1,0)
 
-        # cubo 1 (vermelho) parcialmente na frente
+        # cubo 1 (vermelho)
         glPushMatrix()
         glTranslatef(-0.7, 0, 0)
         glRotatef(angle, 0,1,0)
@@ -67,7 +67,7 @@ def main():
         cube(2.0)
         glPopMatrix()
 
-        # cubo 2 (azul) atrás/na frente conforme gira (Z-buffer decide)
+        # cubo 2 (azul)
         glPushMatrix()
         glTranslatef(0.7, 0, 0)
         glRotatef(-angle*1.2, 1,1,0)
